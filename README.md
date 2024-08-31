@@ -1,4 +1,4 @@
-## Información de la materia: ST0263
+![image](https://github.com/user-attachments/assets/6aab391e-9497-4506-bd51-a1c5abba7cde)## Información de la materia: ST0263
 ## Estudiante: Pablo Moreno Quintero | Email: pmorenoq@eafit.edu.co
 ## Profesor: Ediwn Nelson Montoya Munera | Email: emontoya@eafit.edu.co
 # Reto 1: Arquitectura P2P y Comunicación entre procesos.
@@ -14,7 +14,7 @@ El propósito de la actividad era crear, describir e implementar una red P2P (Pe
 # 2. Información general de diseño
 texto sobre esto
 
-# 3. Ambiente de desarrollo
+# 3. Ambiente de desarrollo y ejecución
 (para información más detallada revisar: requirements.txt)
 + Lenguaje de programación usado: Python v3.10.12
 + Sistema Operativo: Ubuntu v22.04
@@ -30,8 +30,19 @@ pip install flask grpcio requests
 ### Estructura de directorios
 ![image](https://github.com/user-attachments/assets/fdddb6b7-bb3f-4633-b3d6-4d19ee1a4192)
 
-# 4. Configuración de ejecución
-Desde la consola ejecutar:
+# 4. Ejecución
+Para ejecutar cada peer desde la consola:
 ```
 python3 peer.py --port <puerto1> --grpc_port <puerto2>
+```
+1. El sistema pedirá al usuario que ingrese la URL de algún otro peer conocido para acceder a la red. (no se ingresa nada en caso de ser el primer peer)
+2. El sistema estará esuchando constantemente por posibles peticiones realizadas
+
+Para añadir información a cada Peer
+```
+curl -X POST -H "Content-Type: application/json" -d '{"key": "<test_key>", "value": "<test_value>"}' http://<IP:PORT>/store_data
+```
+Para ver la informaci'on contenida en cada peer
+```
+curl http://<IP:PORT>/get_data/<test_key>
 ```
