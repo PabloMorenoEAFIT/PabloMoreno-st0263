@@ -31,18 +31,18 @@ pip install flask grpcio requests
 ![image](https://github.com/user-attachments/assets/fdddb6b7-bb3f-4633-b3d6-4d19ee1a4192)
 
 # 4. Ejecución
-Para ejecutar cada peer desde la consola:
+### Para ejecutar cada peer desde la consola:
 ```
 python3 peer.py --port <puerto1> --grpc_port <puerto2>
 ```
 1. El sistema pedirá al usuario que ingrese la URL de algún otro peer conocido para acceder a la red. (no se ingresa nada en caso de ser el primer peer)
 2. El sistema estará esuchando constantemente por posibles peticiones realizadas
 
-Para añadir información a cada Peer
+### Para añadir información a cada Peer
 ```
 curl -X POST -H "Content-Type: application/json" -d '{"key": "<test_key>", "value": "<test_value>"}' http://<IP:PORT>/store_data
 ```
-Para ver la informaci'on contenida en cada peer
+### Para ver la información contenida en cada peer
 ```
 curl http://<IP:PORT>/get_data/<test_key>
 ```
