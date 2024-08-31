@@ -5,11 +5,15 @@
 # 1. Descripción
 El propósito de la actividad era crear, describir e implementar una red P2P (Peer to Peer) haciendo uso de diferentes formas de comunicación entre cada peer dentro de la misma red que soporte un sistema de compartición de archivos distribuidos y descentralizados.
 ## 1.1. Aspectos cumplidos 
-+ Aspecto 1
-+ Aspecto 2
++ Creación de peers.
++ Servicio de descubrimiento de peers funcional.
++ Asignación y actualización de direcciones en tabla DHT para cada peer de la red.
++ Acceso a la infromación contenida en un peer por cada peer en la red.
++ Intercambio de información mediante gRPC.
++ Comunicación entre peers mediante API_REST.
++ Soporta concurrencia de procesos.
 ## 1.2. Aspectos no cumplidos
-+ Aspecto no cumplido 1
-+ Aspecto no cumplido 2
++ Implementación de un archivo json de lectura dinámica.
 
 # 2. Información general de diseño
 ### Arquitectura 
