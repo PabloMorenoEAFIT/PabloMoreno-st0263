@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/6aab391e-9497-4506-bd51-a1c5abba7cde)## Información de la materia: ST0263
+## Información de la materia: ST0263
 ## Estudiante: Pablo Moreno Quintero | Email: pmorenoq@eafit.edu.co
 ## Profesor: Ediwn Nelson Montoya Munera | Email: emontoya@eafit.edu.co
 # Reto 1: Arquitectura P2P y Comunicación entre procesos.
