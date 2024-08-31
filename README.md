@@ -20,11 +20,11 @@ Red P2P
 ### Comunicación
 - HTTP (Implementando API_REST mediante Flask)
 - gRPC (Transferencia entre nodos)
-## Patrones de diseño
+### Patrones de diseño
 - Replicación de datos
 - Sincronización
 - Registro
-## Buenas prácticas 
+### Buenas prácticas 
 - Concurrencia
 - Modularidad
 - Sincronización de recursos
