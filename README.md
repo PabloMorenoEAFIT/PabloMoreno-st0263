@@ -12,7 +12,22 @@ El propósito de la actividad era crear, describir e implementar una red P2P (Pe
 + Aspecto no cumplido 2
 
 # 2. Información general de diseño
-texto sobre esto
+### Arquitectura 
+Red P2P
+### Servicios
+- Servidor Flask (almacena datos, recupera datos y gestión de Peers)
+- Servidor gRPC (transferencia de datos)
+### Comunicación
+- HTTP (Implementando API_REST mediante Flask)
+- gRPC (Transferencia entre nodos)
+## Patrones de diseño
+- Replicación de datos
+- Sincronización
+- Registro
+## Buenas prácticas 
+- Concurrencia
+- Modularidad
+- Sincronización de recursos
 
 # 3. Ambiente de desarrollo y ejecución
 (para información más detallada revisar: requirements.txt)
