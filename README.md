@@ -14,6 +14,7 @@ El propósito de la actividad era crear, describir e implementar una red P2P (Pe
 + Soporta concurrencia de procesos.
 ## 1.2. Aspectos no cumplidos
 + Implementación de un archivo json de lectura dinámica.
++ Desplegar el de nodos con Docker.
 
 # 2. Información general de diseño
 ### Arquitectura 
