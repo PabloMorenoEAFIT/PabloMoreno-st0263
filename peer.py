@@ -13,7 +13,7 @@ data_store = {}
 peer_list = []
 peer_lock = threading.Lock()
 
-# Define gRPC 
+# Define gRPC service
 class FileTransferService(file_transfer_pb2_grpc.FileTransferService):
     def GetFile(self, request, context):
         key = request.key
@@ -41,7 +41,7 @@ def store_data():
     if key and value:
         with peer_lock:
             data_store[key] = value
-        # notifica a otros peers
+        # Notify other peers
         for peer in peer_list:
             try:
                 requests.post(f'{peer}/store_data', json={'key': key, 'value': value})
@@ -71,7 +71,7 @@ def register_peer():
     if peer_address and peer_address not in peer_list:
         with peer_lock:
             peer_list.append(peer_address)
-        # notifica peer nuevo de otros peers
+        # Notify new peer about existing peers
         try:
             existing_peers = peer_list.copy()
             existing_peers.remove(request.host_url)
@@ -95,12 +95,12 @@ def get_peers():
         return jsonify({"peers": peer_list}), 200
 
 def main(http_port, grpc_port):
-    # servidor gRPC 
+    # Start gRPC server
     grpc_thread = threading.Thread(target=start_grpc_server, args=(grpc_port,))
     grpc_thread.start()
     
-    # servidor Flask
-    app.run(port=http_port, debug=False, use_reloader=False)
+    # Start Flask server
+    app.run(host='0.0.0.0', port=http_port, debug=False, use_reloader=False)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='P2P Peer')
@@ -108,20 +108,20 @@ if __name__ == '__main__':
     parser.add_argument('--grpc_port', type=int, required=True, help='gRPC port for the peer')
     args = parser.parse_args()
     
-    # inicializa el peer
+    # Initialize the peer and register with an existing node if provided
     existing_peer = input("Ingrese la dirección de un nodo existente (o presione Enter si este es el primer nodo): ")
     if existing_peer:
         try:
-            # registro con peer existente
-            requests.post(f'{existing_peer}/register_peer', json={'address': f'http://localhost:{args.port}'})
-            # busca informacion adicional
+            # Register with an existing peer
+            requests.post(f'{existing_peer}/register_peer', json={'address': f'http://{args.host}:{args.port}'})
+            # Fetch additional peer information
             response = requests.get(f'{existing_peer}/get_peers')
             if response.status_code == 200:
                 peers_data = response.json().get('peers', [])
                 for peer in peers_data:
-                    if peer != f'http://localhost:{args.port}':
+                    if peer != f'http://{args.host}:{args.port}':
                         try:
-                            requests.post(f'http://localhost:{args.port}/update_peers', json={'peers': [peer]})
+                            requests.post(f'http://{args.host}:{args.port}/update_peers', json={'peers': [peer]})
                         except requests.RequestException:
                             continue
         except requests.RequestException:
