@@ -66,3 +66,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"key": "<test_key>", "valu
 ```
 curl http://<IP:PORT>/get_data/<test_key>
 ```
+### Para ver la información de todos los peers conectados a un peer
+```
+curl http://<IP:PORT>/get_peers
+```
