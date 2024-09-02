@@ -74,7 +74,7 @@ def register_peer():
         # Notify new peer about existing peers
         try:
             existing_peers = peer_list.copy()
-            existing_peers.remove(request.host_url)
+            existing_peers.remove(f'http://{args.host}:{args.port}/')
             requests.post(f'{peer_address}/update_peers', json={'peers': existing_peers})
         except requests.RequestException:
             pass
@@ -94,7 +94,7 @@ def get_peers():
     with peer_lock:
         return jsonify({"peers": peer_list}), 200
 
-def main(http_port, grpc_port):
+def main(http_port, grpc_port, host):
     # Start gRPC server
     grpc_thread = threading.Thread(target=start_grpc_server, args=(grpc_port,))
     grpc_thread.start()
@@ -106,6 +106,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='P2P Peer')
     parser.add_argument('--port', type=int, required=True, help='HTTP port for the peer')
     parser.add_argument('--grpc_port', type=int, required=True, help='gRPC port for the peer')
+    parser.add_argument('--host', type=str, required=True, help='Host IP for the peer')
     args = parser.parse_args()
     
     # Initialize the peer and register with an existing node if provided
@@ -127,4 +128,4 @@ if __name__ == '__main__':
         except requests.RequestException:
             pass
     
-    main(args.port, args.grpc_port)
+    main(args.port, args.grpc_port, args.host)
