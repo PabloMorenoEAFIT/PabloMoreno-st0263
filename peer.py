@@ -100,7 +100,9 @@ def main(http_port, grpc_port, host):
     grpc_thread.start()
     
     # Start Flask server
-    app.run(host='0.0.0.0', port=http_port, debug=False, use_reloader=False)
+    # app.run(host='0.0.0.0', port=http_port, debug=False, use_reloader=False)
+
+    app.run(host, port=http_port, debug=False, use_reloader=False)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='P2P Peer')
