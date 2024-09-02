@@ -44,8 +44,9 @@ Red P2P
 + grpcio-tools v1.66.1
 + requests v2.32.3
 ### Instalación de librerías
+(actualizar las librerias segun sea necesario)
 ```
-pip install flask grpcio requests
+pip install -r requirements.txt
 ```
 ### Estructura de directorios
 ![image](https://github.com/user-attachments/assets/fdddb6b7-bb3f-4633-b3d6-4d19ee1a4192)
